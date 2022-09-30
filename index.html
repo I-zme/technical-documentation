@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Technical Documentation</title>
 </head>
 <body>
-    
+
     <nav id="navbar">
     <header>Web Development Basics</header>
         <ul>
@@ -29,9 +30,11 @@
         <section id="HTML" class="main-section">
             <header>HTML</header>
             <p>Every webpage is built using these three basic building blocks - structure, design and function.</p>
-            <p>HTML is the structure, if forms the skeleton of the site. It is a fairly simple language consisting of <em>tags</em> - open tags such as <code>&lt;p&gt;&lt;/p&gt;</code> and self-closing tags such as <code>&lt;img&gt;</code>. Open tags are for areas of text or function that begin in one place and end where the coder tell it to, such as paragraphs; self-closing tags are for images or links, they have a set beginning and end.</p>
+            <p>HTML is the structure, if forms the skeleton of the site. It is a fairly simple language consisting of <em>tags</em> - open tags such as <code class="inline">&lt;p&gt;&lt;/p&gt;</code> and self-closing tags such as <code class="inline">&lt;img&gt;</code>. Open tags are for areas of text or function that begin in one place and end where the coder tell it to, such as paragraphs; self-closing tags are for images or links, they have a set beginning and end.</p>
 
-            <code>&lt;p&gt;This is a paragraph, an open tag, it can go on forever unless we add specific break points. To do that we use the self-closing tag &lt;br&gt;<br> This is a new line after the break. &lt;/p&gt;</samp>
+            <div class="code-div">
+                <code>&lt;p&gt;This is a paragraph, an open tag, it can go on forever unless we add specific break points. To do that we use the self-closing tag &lt;br&gt;<br> This is a new line after the break. &lt;/p&gt;</code>
+            </div>
     
         </section>
         <section id="CSS" class="main-section">
@@ -39,7 +42,9 @@
             <p>It's rather ugly though, isn't it? Pure HTML uses the default background color and font, it positions everything minimally and is just generally pretty ugly. That's where our design building block comes in - CSS</p>
             <p>CSS stands for 'Cascading Style Sheet', the name referring to its passive trikle down property where child elements acquire their parent's styling - for example if we give a certain section a blue background color, all paragraphs within this section will have the same blue background.</p>
             <p>To do so we add style attribue within our HTML tag</p>
-            <code class="blue">&lt;p <em>style='background-color:blue'</em>&gt;This paragraph now has a blue background&lt;/p&gt;</code>
+            <div class="code-div">
+                <code class="blue">&lt;p <em>style='background-color:blue'</em>&gt;This paragraph now has a blue background&lt;/p&gt;</code>
+            </div>
             <p>We can also add all of our styling within a separate page reserved for CSS styling only.</p>
         </section>
 
@@ -47,19 +52,19 @@
             <header>Javascript</header>
             <p>Well that is nice, very nice really, but what can you do with just structure and design? HTML and CSS are like the bones and skin of the site, without the muscle it just sort of lies there, it's <em>static</em>. Javascript makes our website <em>dynamic</em>, so that if we click on a button to order some delicious dumplings the order will be sent to the restaurant and the money charged from our account, without Javascript we would still be clicking on the image in frustration, with no hope of dumplings coming our way. </p>
             <p>How do we implement Javascript in our site? Let's make a button which, when clicked, greets the user by name:</p>
-            <button id="js-greet-example">Click Me!</button>
-            <pre>
-                <code>
-                    &lt;button <em>onclick="helloUser()"</em>&gt; Click Me! &lt;/button&gt;
+            <button id="js-greet-example" onclick="helloUser()">Click Me!</button>
+            
+            <div class="code-div">
+                <pre><code>
+&lt;button <em>onclick="helloUser()"</em>&gt; Click Me! &lt;/button&gt;
 
-                    &lt;script&gt;
-                        function helloUser(){
-                            userName = prompt('What is your name?');
-                            alert(`Hello, ${userName}!`);
-                        }
-                    &lt;/script&gt;
-                </code>
-            </pre>
+    &lt;script&gt;
+        function helloUser(){
+            userName = prompt('What is your name?');
+            alert(`Hello, ${userName}!`);
+        }
+    &lt;/script&gt;</code></pre>
+            </div>
             <p>We use a <em>script</em> open tag, within which we add <code>function functionName(){ our code }</code>.
                 <br>Just like with CSS, we can also write all of our code in a separate page, reserved for Javascript only. For both CSS and Javascript this is useful when we have a lot of styling and codind to do, since it can take up a lot of space.</p>
         </section>
@@ -68,59 +73,88 @@
             <header>Examples</header>
             <p>So far we've seen some HTML, HTML+CSS and finally HTML+Javascript. Let's see an example of how to join them all together:</p>
 
-            <button id="background-change-example">Click to change my color!</button>
+            <button id="myButton"onclick="changeColor()">Click to change my color!</button>
 
-            <p>Pretty cool right? Here's how we do it:
-                <ol>
-                    <li>Create a button using HTML</li>
-                    <li>Give the button an id &rarr; as the name suggests, it's a way to identify this button from other buttons</li>
-                    <li>Add a basic background color using CSS</li>
-                    <li>Add a function that executes when the button is clicked &rarr; onClick</li>
-                    <li>Create our function using Javascript &rarr;<ol>
-                        <li>Find our button using its id &rarr; getElementById</li>
-                        <li>Create a variable (or container) for the color we want to change to</li>
-                        <li>Find the color we have now &rarr; myButton.style.backgroundColor finds the current CSS value</li>
-                        <li>Choose the color to change to according to the current background color &rarr; switch is a conditional statement, we'll learn about these later</li>
-                        <li>Assign the new color to our button</li>
-                    </ol></li>
-                </ol>
-            </p>
-            <pre>
-                <code>
-                    &lt;button <em>style="background-color: white"</em> id="myButton" <em>onclick="changeColor()"</em>&gt; Click Me! &lt;/button&gt;
+            <p>Pretty cool right? Here's how we do it:</p>
 
-                    &lt;script&gt;
-                        function changeColor(){
-                            const myButton = document.getElementById('myButton');
-                            let newColor;
-                            switch(myButton.style.backgroundColor){
-                                case 'white':
-                                    newColor = 'blue';
-                                    break
+            <ol id="example-list">
+                <li>Create a button using HTML</li>
+                <li>Give the button an id <span class="bold">&rarr;</span> <em>as the name suggests, it's a way to identify this button from other buttons</em></li>
+                <li>Add a basic background color using CSS</li>
+                <li>Add a function that executes when the button is clicked <span class="bold">&rarr;</span> <em>onClick</em></li>
+                <li>Create our function using Javascript <span class="bold">&rarr;</span><ol id="exmaple-inner-list">
+                    <li>Find our button using its id <span class="bold">&rarr;</span> <em>getElementById</em></li>
+                    <li>Create a variable (or container) for the color we want to change to</li>
+                    <li>Find the color we have now <span class="bold">&rarr;</span> <em>myButton.style.backgroundColor finds the current CSS value</em></li>
+                    <li>Choose the color to change to according to the current background color <span class="bold">&rarr;</span> <em>switch is a conditional statement, we'll learn about these later</em></li>
+                    <li>Assign the new color to our button</li>
+                </ol></li>
+            </ol>
+            
+            <div class="code-div">
+            <pre><code>&lt;button <em>style="background-color: white"</em> id="myButton" <em>onclick="changeColor()"</em>&gt; Click Me! &lt;/button&gt;
+
+&lt;script&gt;
+    function changeColor(){
+        const myButton = document.getElementById('myButton');
+        let newColor;
+        switch(myButton.style.backgroundColor){
+            case 'white':
+                newColor = 'greenyellow';
+                break
                                 
-                                case 'blue':
-                                    newColor = 'magenta';
-                                    break
+            case 'greenyellow':
+                newColor = 'magenta';
+                break
 
-                                case 'magenta':
-                                    newColor = 'orange';
-                                    break
+            case 'magenta':
+                newColor = 'orange';
+                break
 
-                                case 'orange':
-                                    newColor = 'white';
-                                    break
-                            }
-                            myButton.style.backgroundColor = newColor;
-                        }   
-                    &lt;/script&gt;
-                </code>
-            </pre>
-
+            case 'orange':
+                newColor = 'white';
+                break
+        }
+        myButton.style.backgroundColor = newColor;
+    }   
+&lt;/script&gt;</code></pre>
+            </div>
+            
             <p>That's it! We now have a button that changes color when we click on it, and we used some basic HTML, CSS and Javascript to build it!</p>
         </section>
     </main>
 
- 
+ <script>
+
+
+    function changeColor(){
+        const myButton = document.getElementById('myButton');
+        let newColor;
+        switch(myButton.style.backgroundColor){
+            case 'white':
+                newColor = 'greenyellow';
+                break
+                                
+            case 'greenyellow':
+                newColor = 'magenta';
+                break
+
+            case 'magenta':
+                newColor = 'orange';
+                break
+
+            case 'orange':
+                newColor = 'white';
+                break
+        }
+        myButton.style.backgroundColor = newColor;
+    }
+
+    function helloUser(){
+            userName = prompt('What is your name?');
+            alert(`Hello, ${userName}!`);
+    }
+ </script>
     
 </body>
 </html>
